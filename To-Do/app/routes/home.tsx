@@ -1,5 +1,5 @@
 import type { Route } from "../+types/root";
-import { Todo } from "../todo/todo";
+import  Todo  from "../todo/todo";
 
 export function meta({}: Route.MetaArgs) {
   return [
