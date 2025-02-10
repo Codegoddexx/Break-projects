@@ -99,13 +99,14 @@ const Todo: React.FC = () => {
   onChange={() => toggleTask(task.id)}
   className="w-5 h-5 border-2 rounded-full cursor-pointer"
   style={{
-    backgroundImage: task.completed
-      ? `url(${markedDoneIcon}), linear-gradient(to right, hsl(192, 100%, 67%), hsl(280, 87%, 65%))`
-      : "none",
-    backgroundSize: "100% auto, cover", 
+    backgroundImage:  task.completed
+    ? `radial-gradient(circle, hsl(192, 100%, 67%), hsl(280, 87%, 65%)), url(${markedDoneIcon})`
+    : "none",
+    backgroundSize: "50% auto, cover", 
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
     borderColor: task.completed ? "transparent" : "#9ca3af",
+    border: "100%"
   }}
 />
 
