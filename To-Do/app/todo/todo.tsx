@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import headerbgLight from "./bg-mobile-light.jpg";
 import headerbgDark from "./bg-mobile-dark.jpg";
+import darkmodeIcon from "./icon-moon.svg";
+import lightmodeIcon from "./icon-sun.svg";
 
 interface Task {
   id: number;
@@ -48,21 +50,27 @@ const Todo: React.FC = () => {
   return (
     <div
       className={`min-h-screen flex flex-col items-center ${darkMode ? "bg-gray-900 text-white" : "bg-gray-100 text-black"}`}
+      style={{
+        backgroundImage: `url(${darkMode ? headerbgDark : headerbgLight})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
     >
-      <header className="w-full flex justify-between items-center p-6 text-2xl font-bold"
-         style={{
-          backgroundImage: `url(${darkMode ? headerbgDark : headerbgLight})`,
-          backgroundSize: "",
-          backgroundPosition: "center",
-        }}
-      >
+      
+
+      <div className="w-80 mt-6 bg-white dark:bg-gray-800 p-4 shadow-md rounded-md flex flex-col">
+      
+      <header className="w-full flex justify-between items-center p-6 text-2xl font-bold">
         <span>TODO</span>
         <button onClick={() => setDarkMode(!darkMode)} className="text-xl">
-          {darkMode ? "☀️" : "🌙"}
-        </button>
+  <img
+    src={darkMode ? lightmodeIcon : darkmodeIcon}
+    alt={darkMode ? "Light Mode" : "Dark Mode"}
+    className="w-6 h-6"
+  />
+</button>
       </header>
-
-      <div className="w-80 mt-6 bg-white dark:bg-gray-800 p-4 shadow-md rounded-md flex">
+<div>
         <input
           type="text"
           placeholder="Create a new todo..."
@@ -74,8 +82,9 @@ const Todo: React.FC = () => {
               setNewTask("");
             }
           }}
-          className="w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white"
+          className="w-full p-2 rounded-md dark:bg-gray-700 dark:text-white"
         />
+        </div>
       </div>
 
       <ul className="w-80 mt-4 bg-white dark:bg-gray-800 shadow-md rounded-md">
