@@ -3,6 +3,7 @@ import headerbgLight from "./bg-mobile-light.jpg";
 import headerbgDark from "./bg-mobile-dark.jpg";
 import darkmodeIcon from "./icon-moon.svg";
 import lightmodeIcon from "./icon-sun.svg";
+import markedDoneIcon from "./icon-check.svg";
 
 interface Task {
   id: number;
@@ -92,7 +93,26 @@ const Todo: React.FC = () => {
       <ul className="w-80 mt-4 bg-white dark:bg-gray-800 shadow-md rounded-md">
         {filteredTasks.map(task => (
           <li key={task.id} className="flex items-center justify-between p-3 border-b last:border-b-0">
-            <input type="checkbox" checked={task.completed} onChange={() => toggleTask(task.id)} className="w-5 h-5" />
+<input
+  type="checkbox"
+  checked={task.completed}
+  onChange={() => toggleTask(task.id)}
+  className="w-5 h-5 border-2 rounded-full cursor-pointer"
+  style={{
+    backgroundImage: task.completed
+      ? `url(${markedDoneIcon}), linear-gradient(to right, hsl(192, 100%, 67%), hsl(280, 87%, 65%))`
+      : "none",
+    backgroundSize: "100% auto, cover", 
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    borderColor: task.completed ? "transparent" : "#9ca3af",
+  }}
+/>
+
+
+
+
+
             <span className={`flex-1 mx-3 ${task.completed ? "line-through text-gray-400" : ""}`}>{task.text}</span>
             <button onClick={() => removeTask(task.id)} className="text-red-500 text-xl">✖</button>
           </li>
@@ -107,7 +127,7 @@ const Todo: React.FC = () => {
       </div>
 
       <div className="w-80 mt-4 flex justify-center space-x-4">
-        <button className={`px-4 py-1 rounded-md ${filter === "all" ? "text-blue" : "text-grey-500"}`} onClick={() => setFilter("all")}>All</button>
+        <button className={`px-4 py-1 rounded-md ${filter === "all" ? "text-blue-900" : "text-grey-500"}`} onClick={() => setFilter("all")}>All</button>
         <button className={`px-4 py-1 rounded-md ${filter === "active" ? "text-blue" : "text-gray-500"}`} onClick={() => setFilter("active")}>Active</button>
         <button className={`px-4 py-1 rounded-md ${filter === "completed" ? "text-blue" : "text-gray-500"}`} onClick={() => setFilter("completed")}>Completed</button>
       </div>
